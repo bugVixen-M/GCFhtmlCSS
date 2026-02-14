@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia, the free encyclopedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #202122;
+            background-color: #f6f6f6;
+        }
+
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+            grid-template-columns: 176px 1fr;
+            min-height: 100vh;
+        }
+
+        header {
+            grid-area: header;
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #a2a9b1;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .wiki-logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 40px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 8px 35px 8px 15px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #72777d;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            padding: 20px 10px;
+            background-color: #f6f6f6;
+            border-right: 1px solid #a2a9b1;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 12px;
+            font-weight: normal;
+            color: #54595d;
+            border-top: 1px solid #a2a9b1;
+            padding-top: 5px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-nav a {
+            font-size: 13px;
+            color: #0645ad;
+        }
+
+        main {
+            grid-area: main;
+            background-color: #fff;
+            padding: 20px 40px;
+        }
+
+        .welcome-banner {
+            border: 1px solid #a2a9b1;
+            padding: 15px 25px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome-text h1 {
+            font-family: inherit;
+            font-weight: normal;
+            font-size: 24px;
+            border-bottom: none;
+        }
+
+        .stats {
+            text-align: right;
+            font-size: 13px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #a2a9b1;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #f2f2f2;
+            padding: 5px 15px;
+            border-bottom: 1px solid #a2a9b1;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-body p {
+            margin-bottom: 15px;
+        }
+
+        .featured-img {
+            float: left;
+            margin: 0 15px 10px 0;
+            border: 1px solid #a2a9b1;
+            padding: 3px;
+            max-width: 150px;
+        }
+
+        .card-body ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        .card-body li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            grid-area: footer;
+            padding: 40px 20px;
+            background-color: #f6f6f6;
+            border-top: 1px solid #a2a9b1;
+            font-size: 12px;
+            color: #54595d;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .footer-info {
+            line-height: 1.8;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 150px 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-areas:
+                    "header"
+                    "main"
+                    "footer";
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            header {
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+            }
+
+            .search-container {
+                margin: 0;
+                width: 100%;
+            }
+
+            main {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/120px-Wikipedia-logo-v2.svg.png"
+                    alt="Wikipedia Logo" class="wiki-logo">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search Wikipedia">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="header-right">
+                <a href="#">Create account</a>
+                <a href="#">Log in</a>
+                <a href="#">···</a>
+            </div>
+        </header>
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <ul class="sidebar-nav">
+                    <li><a href="#">Main page</a></li>
+                    <li><a href="#">Contents</a></li>
+                    <li><a href="#">Current events</a></li>
+                    <li><a href="#">Random article</a></li>
+                    <li><a href="#">About Wikipedia</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Donate</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Contribute</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Learn to edit</a></li>
+                    <li><a href="#">Community portal</a></li>
+                    <li><a href="#">Recent changes</a></li>
+                    <li><a href="#">Upload file</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Tools</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#">What links here</a></li>
+                    <li><a href="#">Related changes</a></li>
+                    <li><a href="#">Special pages</a></li>
+                    <li><a href="#">Permanent link</a></li>
+                    <li><a href="#">Page information</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main>
+            <section class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Welcome to <a href="#">Wikipedia</a>,</h1>
+                    <p>the <a href="#">free encyclopedia</a> that <a href="#">anyone can edit</a>.</p>
+                </div>
+                <div class="stats">
+                    <p><strong>6,824,512</strong> articles in <strong>English</strong></p>
+                    <p><a href="#">The arts</a> • <a href="#">Biography</a> • <a href="#">Geography</a> • <a
+                            href="#">History</a></p>
+                </div>
+            </section>
+
+            <div class="content-grid">
+                <div class="left-col">
+                    <article class="card">
+                        <div class="card-header">
+                            From today's featured article
+                        </div>
+                        <div class="card-body">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Space_Shuttle_Atlantis_launches_on_STS-135.jpg/150px-Space_Shuttle_Atlantis_launches_on_STS-135.jpg"
+                                alt="Space Shuttle" class="featured-img">
+                            <p><strong><a href="#">STS-135</a></strong> was the 135th and final mission of the
+                                <strong><a href="#">American Space Shuttle program</a></strong>. It used the orbiter
+                                <i>Atlantis</i> and hardware originally processed for the STS-335 contingency mission,
+                                which was not flown. STS-135 launched on 8 July 2011, and landed on 21 July 2011,
+                                following a one-day mission extension.
+                            </p>
+                            <p>The four-person crew conducted operations at the International Space Station (ISS),
+                                including the delivery of the Multi-Purpose Logistics Module (MPLM) <i>Raffaello</i> and
+                                a Lightweight Multi-Purpose Carrier (LMC). The mission also marked the first and only
+                                time that a Space Shuttle launched with a crew of only four since STS-6 in 1983.</p>
+                            <p>(<strong><a href="#">Full article...</a></strong>)</p>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-header">
+                            Did you know...
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>... that <strong><a href="#">The Great Wall of China</a></strong> is not actually
+                                    visible from space with the naked eye?</li>
+                                <li>... that <strong><a href="#">honey</a></strong> never spoils; archaeologists have
+                                    found edible honey in ancient Egyptian tombs?</li>
+                                <li>... that <strong><a href="#">octopuses</a></strong> have three hearts and blue
+                                    blood?</li>
+                                <li>... that the <strong><a href="#">Eiffel Tower</a></strong> can be 15 cm taller
+                                    during the summer due to thermal expansion?</li>
+                                <li>... that <strong><a href="#">bananas</a></strong> are berries, but strawberries are
+                                    not?</li>
+                            </ul>
+                            <p style="margin-top: 10px; font-size: 13px;"><a href="#">Archive</a> • <a href="#">Start a
+                                    new article</a> • <a href="#">Nominate an article</a></p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="right-col">
+                    <article class="card">
+                        <div class="card-header">
+                            In the news
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>NASA's <strong><a href="#">Artemis II</a></strong> mission completes a major
+                                    milestone in heat shield testing.</li>
+                                <li>The <strong><a href="#">2024 United Nations Climate Change Conference</a></strong>
+                                    concludes with new agreements on renewable energy targets.</li>
+                                <li>Scientists discover a new species of <strong><a href="#">deep-sea
+                                            jellyfish</a></strong> in the Mariana Trench.</li>
+                                <li>The Nobel Prize in <strong><a href="#">Physics</a></strong> is awarded for
+                                    groundbreaking work in quantum computing.</li>
+                            </ul>
+                            <p style="margin-top: 10px; font-size: 13px;"><strong><a href="#">Ongoing</a></strong>: <a
+                                    href="#">Israel–Hamas war</a> • <a href="#">Russian invasion of Ukraine</a></p>
+                            <p style="font-size: 13px;"><a href="#">Recent deaths</a> • <a href="#">More current
+                                    events</a></p>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-header">
+                            On this day...
+                        </div>
+                        <div class="card-body">
+                            <p><strong>February 14</strong>: <strong><a href="#">Valentine's Day</a></strong></p>
+                            <ul>
+                                <li><strong><a href="#">1876</a></strong> – Alexander Graham Bell applied for a patent
+                                    for the telephone.</li>
+                                <li><strong><a href="#">1946</a></strong> – <strong><a href="#">ENIAC</a></strong>, the
+                                    first general-purpose electronic computer, was formally dedicated at the University
+                                    of Pennsylvania.</li>
+                                <li><strong><a href="#">1989</a></strong> – The first 24 satellites of the <strong><a
+                                            href="#">Global Positioning System</a></strong> were placed into orbit.</li>
+                                <li><strong><a href="#">2005</a></strong> – <strong><a href="#">YouTube</a></strong> was
+                                    founded by three former PayPal employees.</li>
+                            </ul>
+                            <p style="margin-top: 10px; font-size: 13px;"><a href="#">Archive</a> • <a href="#">By
+                                    email</a> • <a href="#">List of days of the year</a></p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <ul class="footer-links">
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#">About Wikipedia</a></li>
+                <li><a href="#">Disclaimers</a></li>
+                <li><a href="#">Contact Wikipedia</a></li>
+                <li><a href="#">Code of Conduct</a></li>
+                <li><a href="#">Developers</a></li>
+                <li><a href="#">Statistics</a></li>
+                <li><a href="#">Cookie statement</a></li>
+                <li><a href="#">Mobile view</a></li>
+            </ul>
+            <div class="footer-info">
+                <p>Text is available under the <a href="#">Creative Commons Attribution-ShareAlike License 4.0</a>;
+                    additional terms may apply. By using this site, you agree to the <a href="#">Terms of Use</a> and <a
+                        href="#">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="#">Wikimedia
+                        Foundation, Inc.</a>, a non-profit organization.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
