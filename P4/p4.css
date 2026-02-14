@@ -1,0 +1,89 @@
+body
+{
+    margin:0;
+    font-family: Arial, sans-serif;
+}
+
+footer
+{
+    background-color:#09423b;
+    color:white;
+    padding:40px 70px;
+}
+
+.footer-main
+
+{
+    display:flex;
+    justify-content:space-between;
+}
+
+.logo-box
+{
+    display:flex;
+    align-items:center;
+}
+
+.logo
+{
+    width:50px;
+    margin-right:10px;
+}
+.kisan{
+    color: #22c119;
+}
+
+
+.bharti
+{
+    color:#9d61009b;
+}
+
+.tag
+{
+    font-size:13px;
+    margin-top:-5px;
+}
+
+.contact
+{
+    margin-top:20px;
+}
+.contact i
+{
+    background:#f1c40f;
+    color:black;
+    padding:8px;
+    border-radius:50%;
+    margin-right:8px;
+}
+.middle
+{
+    text-align:center;
+}
+
+.menu a
+{
+    display:block;
+    color:white;
+    text-decoration:none;
+    margin:6px;
+    font-weight:bold;
+}
+
+.social
+{
+    margin-top:15px;
+}
+
+
+.right
+{
+    width:300px;
+}
+
+.right p
+{
+    font-size:14px;
+    color:#d0d0d0;
+}

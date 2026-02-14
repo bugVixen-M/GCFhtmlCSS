@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Bakery</title>
+    <link rel="stylesheet" href="p2.css">
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">🥐 Sweet Bakery</a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#order">Order</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Freshly Baked Happiness</h1>
+        <p>Traditional recipes with a modern twist.</p>
+    </div>
+
+    <section id="about">
+        <h2 class="section-title">Our Story</h2>
+        <p class="about-text">
+            Since 2026, we've been committed to the art of baking. We believe that the best food starts with the simplest ingredients: flour, water, and love. Every pastry is handcrafted and baked in our traditional stone ovens to ensure the perfect crust every time.
+        </p>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title">Popular Items</h2>
+        <div class="products-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Chocolate Cake">
+                <div class="card-info">
+                    <h3>Chocolate Cake</h3>
+                    <p class="price">₹300</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Fresh Bread">
+                <div class="card-info">
+                    <h3>Fresh Bread</h3>
+                    <p class="price">₹40</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" alt="Cookies">
+                <div class="card-info">
+                    <h3>Cookies</h3>
+                    <p class="price">₹150</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title table-margin">Full Menu</h2>
+        <table class="menu-table">
+            <thead>
+                <tr>
+                    <th>Delicious Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Chocolate Cake</td><td>₹300</td></tr>
+                <tr><td>Fresh Bread</td><td>₹40</td></tr>
+                <tr><td>Cookies</td><td>₹150</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="order" class="order-section">
+        <h2 class="section-title">Place Your Order</h2>
+        <div class="order-box">
+            <form action="#">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Select Your Favorite</label>
+                    <select>
+                        <option>Chocolate Cake</option>
+                        <option>Fresh Bread</option>
+                        <option>Cookies</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea rows="4" placeholder="Enter your full address here..."></textarea>
+                </div>
+                <button type="submit" class="btn">Confirm Order</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Sweet Bakery | 123 Baker Street, CA</p>
+    </footer>
+
+</body>
+</html>
